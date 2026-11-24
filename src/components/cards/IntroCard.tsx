@@ -20,8 +20,7 @@ interface IntroCardProps {
 }
 
 const tiles = [
-  { label: "Engagement", event: EVENTS.engagement, detail: "6:00 PM", to: 1 },
-  { label: "Wedding", event: EVENTS.wedding, detail: "Sehra 4 PM", to: 2 },
+  { label: "Wedding", event: EVENTS.wedding, detail: "Sehra 4 PM", to: 1 },
 ] as const;
 
 export default function IntroCard({ onBegin }: IntroCardProps) {
@@ -107,7 +106,7 @@ export default function IntroCard({ onBegin }: IntroCardProps) {
           transition={{ duration: 0.8, delay: 1.6 }}
           className="body-text italic mb-1"
         >
-          Engagement &amp; Wedding Invitation
+          Wedding Invitation
         </motion.p>
 
         <motion.p
@@ -116,14 +115,14 @@ export default function IntroCard({ onBegin }: IntroCardProps) {
           transition={{ duration: 0.8, delay: 2 }}
           className="body-small max-w-md mx-auto mb-5 italic"
         >
-          With the divine blessings of Lord Shri Ganesh and our revered elders, we cordially invite you to grace the auspicious engagement and wedding celebrations
+          With the divine blessings of Lord Shri Ganesh and our revered elders, we cordially invite you to grace the auspicious wedding celebrations
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 2.2 }}
-          className="grid grid-cols-2 gap-3 w-full max-w-sm mx-auto mb-4"
+          className="grid grid-cols-1 w-full max-w-[14rem] mx-auto mb-4"
         >
           {tiles.map((t) => (
             <button key={t.label} type="button" onClick={() => onBegin(t.to)} className="event-tile">

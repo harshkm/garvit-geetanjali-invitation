@@ -55,11 +55,11 @@ export const metadata: Metadata = {
   ),
   title: "Garvit (Rishabh) & Geetanjali (Varsha) | Invitation",
   description:
-    "You are invited to the engagement of Garvit (Rishabh) & Geetanjali (Varsha) on 29 November 2026 in Delhi and their wedding on 14 December 2026 in Noida.",
+    "You are invited to the wedding of Garvit (Rishabh) & Geetanjali (Varsha) on 14 December 2026 in Noida.",
   openGraph: {
     title: "Garvit (Rishabh) & Geetanjali (Varsha)",
     description:
-      "Engagement on 29 November 2026 at Diamond Crown Banquet, Delhi. Wedding on 14 December 2026 at Diamond Crown Platinum Hall, Noida.",
+      "Wedding on 14 December 2026 at Diamond Crown Platinum Hall, Noida.",
     type: "website",
     locale: "en_IN",
     siteName: "Garvit (Rishabh) & Geetanjali (Varsha)",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Garvit (Rishabh) & Geetanjali (Varsha)",
     description:
-      "Engagement on 29 November 2026, Delhi. Wedding on 14 December 2026, Noida.",
+      "Wedding on 14 December 2026, Noida.",
   },
 };
 

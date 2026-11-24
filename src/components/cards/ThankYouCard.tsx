@@ -13,7 +13,7 @@ import {
   CornerOrnament,
   FloralCorner,
 } from "@/components/Decorations";
-import { BRIDE, FAMILY, GROOM } from "@/lib/events";
+import { BRIDE, EVENTS, FAMILY, GROOM } from "@/lib/events";
 
 export default function ThankYouCard() {
   return (
@@ -93,7 +93,7 @@ export default function ThankYouCard() {
             <p className="name-gold">{GROOM}</p>
             <p className="amp-mark my-1">&amp;</p>
             <p className="name-gold">{BRIDE}</p>
-            <p className="body-small font-semibold mt-2">29 November &amp; 14 December 2026</p>
+            <p className="body-small font-semibold mt-2">{EVENTS.wedding.dateLabel}</p>
           </motion.div>
 
           <SectionDivider />

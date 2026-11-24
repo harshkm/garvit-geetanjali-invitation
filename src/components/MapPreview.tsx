@@ -21,8 +21,7 @@ export default function MapPreview({ event }: { event: EventInfo }) {
     );
   }
 
-  const flip = event.key === "wedding";
-  const area = event.key === "wedding" ? "SECTOR 51" : "KARKARDOOMA";
+  const area = event.address.split(",")[0].toUpperCase();
   return (
     <a
       className="map-frame map-drawn"
@@ -32,7 +31,7 @@ export default function MapPreview({ event }: { event: EventInfo }) {
       aria-label={`Open ${event.venue} in Google Maps`}
     >
       <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true">
-        <g transform={flip ? "translate(320 0) scale(-1 1)" : undefined}>
+        <g transform="translate(320 0) scale(-1 1)">
           <rect width="320" height="200" fill="#f2eee1" />
           <rect x="16" y="118" width="84" height="58" rx="10" fill="#d3e3c1" />
           <rect x="226" y="14" width="76" height="46" rx="10" fill="#d3e3c1" />
@@ -51,16 +50,8 @@ export default function MapPreview({ event }: { event: EventInfo }) {
             {/* metro line */}
             <path d="M0 104 H320" stroke="#6b1010" strokeWidth="3" strokeDasharray="9 5" />
           </g>
-          {event.key === "engagement" && (
-            <g>
-              <circle cx="132" cy="104" r="7" fill="#ffffff" stroke="#6b1010" strokeWidth="3" />
-            </g>
-          )}
         </g>
         <text x="160" y="194" textAnchor="middle" fontSize="9" letterSpacing="3" fill="#8d8160" fontWeight="700">{area}</text>
-        {event.key === "engagement" && (
-          <text x={flip ? 188 : 132} y="124" textAnchor="middle" fontSize="8.5" fill="#4a2e18" fontWeight="700">Metro station</text>
-        )}
         {/* pin */}
         <ellipse cx="170" cy="100" rx="9" ry="3.2" fill="#24140a" opacity="0.25" />
         <path d="M170 100 C158 82 152 72 152 62 a18 18 0 1 1 36 0 c0 10 -6 20 -18 38z" fill="#6b1010" stroke="#ffffff" strokeWidth="2" />

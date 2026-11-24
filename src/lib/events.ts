@@ -5,7 +5,7 @@ export const BRIDE = "Geetanjali (Varsha)";
 export const COUPLE = `${GROOM} & ${BRIDE}`;
 export const FAMILY = "Gupta Family";
 
-export type EventKey = "engagement" | "wedding";
+export type EventKey = "wedding";
 
 export interface EventInfo {
   key: EventKey;
@@ -21,26 +21,9 @@ export interface EventInfo {
   lat: number;
   lng: number;
   placeId: string;
-  note?: string;
 }
 
 export const EVENTS: Record<EventKey, EventInfo> = {
-  engagement: {
-    key: "engagement",
-    title: "Engagement Ceremony",
-    dateLabel: "Sunday, 29 November 2026",
-    shortDate: "Sun, 29 Nov 2026",
-    timeLabel: "6:00 PM",
-    startISO: "2026-11-29T18:00:00+05:30",
-    endISO: "2026-11-29T22:00:00+05:30",
-    venue: "Diamond Crown Banquet",
-    address: "Karkardooma Metro Station, Arya Nagar, Anand Vihar, Delhi",
-    mapsQuery: "Diamond Crown Banquet, Karkardooma Metro Station, Arya Nagar, Anand Vihar, Delhi",
-    lat: 28.6487184,
-    lng: 77.305948,
-    placeId: "ChIJ_Sks-WP7DDkRiGwKsjl7KrM",
-    note: "Reception to follow",
-  },
   wedding: {
     key: "wedding",
     title: "Wedding Ceremony",
@@ -73,18 +56,12 @@ function gcalStamp(iso: string) {
 }
 
 export function calendarUrl(e: EventInfo) {
-  const title =
-    e.key === "engagement" ? `Engagement: ${COUPLE}` : `Wedding: ${COUPLE}`;
-  const details =
-    e.key === "engagement"
-      ? `Engagement ceremony at ${e.timeLabel}. ${e.note ? `${e.note}. ` : ""}RSVP: ${FAMILY}`
-      : `${e.timeLabel}. RSVP: ${FAMILY}`;
   const p = new URLSearchParams({
     action: "TEMPLATE",
-    text: title,
+    text: `Wedding: ${COUPLE}`,
     dates: `${gcalStamp(e.startISO)}/${gcalStamp(e.endISO)}`,
     location: `${e.venue}, ${e.address}`,
-    details,
+    details: `${e.timeLabel}. RSVP: ${FAMILY}`,
     ctz: "Asia/Kolkata",
   });
   return `https://calendar.google.com/calendar/render?${p.toString()}`;

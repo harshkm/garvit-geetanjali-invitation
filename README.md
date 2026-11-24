@@ -1,4 +1,4 @@
-# Garvit (Rishabh) & Geetanjali (Varsha) — Engagement & Wedding Invitation
+# Garvit (Rishabh) & Geetanjali (Varsha) — Wedding Invitation
 
 A traditional Indian wedding invitation web app featuring animated ceremony cards, hand-crafted SVG decorations, a live countdown timer, embedded venue map, and background music.
 
@@ -7,7 +7,7 @@ A traditional Indian wedding invitation web app featuring animated ceremony card
 
 ## Features
 
-- **4 swipeable cards** — IntroCard, EngagementCard, WeddingCard, ThankYouCard
+- **3 swipeable cards** — IntroCard, WeddingCard, ThankYouCard
 - **Touch & keyboard navigation** — swipe gestures, arrow keys, nav dots, prev/next buttons
 - **Scroll-down button** with directional indicator (flips at bottom)
 - **Live countdown timer** to the wedding date
@@ -16,7 +16,7 @@ A traditional Indian wedding invitation web app featuring animated ceremony card
 - **Dynamic OG image** for rich link previews (couple names, date range, location, kalash icon)
 - **15+ hand-crafted SVG decorations** — CornerOrnament, OrnamentalBorder, TopFlourish, SectionDivider, AnimatedMandala, LotusMotif, Diya (flame animation), FloatingPetals, SparkleField, MarigoldGarland, TurmericDust, MehndiVine, FloralCorner, Bell, Kalash
 - **Framer Motion animations** — entrance transitions, SVG drawing, rotating mandala, diya flame, sparkle twinkling, floating petals
-- **Card-specific color palettes** — gold/parchment (Intro, Engagement & ThankYou), maroon/red (Wedding)
+- **Card-specific color palettes** — gold/parchment (Intro & ThankYou), maroon/red (Wedding)
 - **Map preview** on each venue (live Google map; set `NEXT_PUBLIC_LIVE_MAP=0` to show a drawn preview that links out)
 - **Add to calendar**, **Open in Maps** and **Copy address** on every venue
 - **Names, dates and venues** all come from `src/lib/events.ts` — edit them there
@@ -61,7 +61,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Environment Variables
 
-| Variable | Description | Engagement on 29 November 2026 (Delhi) and wedding on 14 December 2026 (Noida). |
+| Variable | Description | Default |
 |----------|-------------|---------|
 | `NEXT_PUBLIC_SITE_URL` | Production URL used for Open Graph image resolution | `https://wedding-invitation-pearl-eight.vercel.app` |
 
@@ -87,7 +87,6 @@ src/
     ├── Decorations.tsx       # 15+ SVG decorative elements (paisley, mandala, diya, etc.)
     └── cards/
         ├── IntroCard.tsx     # Welcome card — Ganesha, animated mandala, wax seal
-        ├── EngagementCard.tsx # Engagement — 29 Nov 2026, Diamond Crown Banquet, Delhi
         ├── WeddingCard.tsx   # Wedding ceremony — countdown, venue map, directions
         └── ThankYouCard.tsx  # Closing card — rotating mandala, contacts, hashtag
 
@@ -136,7 +135,7 @@ public/
 | Field | Value |
 |-------|-------|
 | Page Title | Garvit (Rishabh) & Geetanjali (Varsha) \| Invitation |
-| Description | Engagement on 29 November 2026 (Delhi) and wedding on 14 December 2026 (Noida). |
+| Description | Wedding on 14 December 2026 (Noida). |
 
 ---
 

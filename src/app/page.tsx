@@ -3,7 +3,6 @@
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
 import IntroCard from "@/components/cards/IntroCard";
-import EngagementCard from "@/components/cards/EngagementCard";
 import WeddingCard from "@/components/cards/WeddingCard";
 import ThankYouCard from "@/components/cards/ThankYouCard";
 import AudioToggle, { type AudioToggleHandle } from "@/components/AudioToggle";
@@ -61,7 +60,6 @@ function ScrollIndicator({ currentCard }: { currentCard: number }) {
 /* Card labels for nav dots */
 const cardLabels = [
   "Welcome",
-  "Engagement",
   "Wedding",
   "Thank You",
 ];
@@ -73,7 +71,7 @@ export default function WeddingInvitation() {
   const audioRef = useRef<AudioToggleHandle>(null);
   /* Track how many times each card has been activated — used as a key
      to force remount, which replays framer-motion entrance animations */
-  const [cardGen, setCardGen] = useState([1, 0, 0, 0]);
+  const [cardGen, setCardGen] = useState([1, 0, 0]);
 
   const navigate = useCallback(
     (to: number) => {
@@ -164,7 +162,6 @@ export default function WeddingInvitation() {
   const cards = useMemo(
     () => [
       <IntroCard key="intro" onBegin={handleBegin} />,
-      <EngagementCard key="engagement" />,
       <WeddingCard key="wedding" />,
       <ThankYouCard key="thankyou" />,
     ],
