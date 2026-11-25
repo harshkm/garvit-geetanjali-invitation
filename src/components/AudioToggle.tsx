@@ -24,10 +24,12 @@ const AudioToggle = forwardRef<AudioToggleHandle, AudioToggleProps>(function Aud
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    const audio = new Audio(asset("/music.mp3"));
+    const audio = new Audio();
+    const canPlayM4A = audio.canPlayType("audio/mp4") !== "";
+    audio.src = asset(canPlayM4A ? "/music.m4a" : "/music.mp3");
     audio.loop = true;
     audio.volume = 0.3;
-    audio.preload = "auto";
+    audio.preload = "none";
     audio.setAttribute("playsinline", "");
     audioRef.current = audio;
     setReady(true);

@@ -40,19 +40,24 @@ export default function WeddingCard() {
         <TopFlourish className="mx-auto mb-4" color="#6b1010" />
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.7 }}
+          initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, type: "spring" }}
-          className="flex justify-center mb-4"
+          className="flex justify-center mb-5"
         >
-          <Image
-            src={asset("/wedding.png")}
-            alt="Bride & Groom"
-            width={300}
-            height={450}
-            className="w-24 sm:w-28 md:w-32 h-auto drop-shadow-md"
-            priority
-          />
+          <div className="relative p-1.5 rounded-t-full rounded-b-2xl bg-gradient-to-b from-[#d4af37] via-[#a87d14] to-[#6b1010] shadow-[0_12px_28px_rgba(107,16,16,0.35)]">
+            <div className="relative w-32 sm:w-36 md:w-40 h-44 sm:h-50 md:h-54 rounded-t-full rounded-b-xl overflow-hidden border border-[#f5e6c8]/50">
+              <Image
+                src={asset("/photos/moment-1.jpg")}
+                alt={`${GROOM} & ${BRIDE}`}
+                fill
+                sizes="(max-width: 640px) 130px, 160px"
+                className="object-cover object-top"
+                priority
+              />
+            </div>
+            <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#d4af37] border border-[#f5e6c8]" />
+          </div>
         </motion.div>
 
         <motion.h2

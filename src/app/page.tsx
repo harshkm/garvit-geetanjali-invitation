@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
 import IntroCard from "@/components/cards/IntroCard";
 import WeddingCard from "@/components/cards/WeddingCard";
+import MomentsCard from "@/components/cards/MomentsCard";
 import ThankYouCard from "@/components/cards/ThankYouCard";
 import AudioToggle, { type AudioToggleHandle } from "@/components/AudioToggle";
 
@@ -61,6 +62,7 @@ function ScrollIndicator({ currentCard }: { currentCard: number }) {
 const cardLabels = [
   "Welcome",
   "Wedding",
+  "Moments",
   "Thank You",
 ];
 
@@ -71,7 +73,7 @@ export default function WeddingInvitation() {
   const audioRef = useRef<AudioToggleHandle>(null);
   /* Track how many times each card has been activated — used as a key
      to force remount, which replays framer-motion entrance animations */
-  const [cardGen, setCardGen] = useState([1, 0, 0]);
+  const [cardGen, setCardGen] = useState([1, 0, 0, 0]);
 
   const navigate = useCallback(
     (to: number) => {
@@ -109,6 +111,33 @@ export default function WeddingInvitation() {
     audioRef.current?.play();
   }, []);
 
+  /* Check URL search params for direct preview (e.g. ?card=moments or ?card=wedding) */
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const cardParam = params.get("card");
+    if (!cardParam) return;
+    const map: Record<string, number> = {
+      welcome: 0,
+      wedding: 1,
+      moments: 2,
+      gallery: 2,
+      thankyou: 3,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+    };
+    const target = map[cardParam.toLowerCase()];
+    if (target !== undefined && target > 0) {
+      setStarted(true);
+      setCurrentCard(target);
+      setCardGen((prev) => {
+        const next = [...prev];
+        next[target] = prev[target] + 1;
+        return next;
+      });
+    }
+  }, []);
+
   /* Reset scroll to top when switching cards */
   useEffect(() => {
     const el = document.querySelector(`[data-card="${currentCard}"]`);
@@ -133,12 +162,27 @@ export default function WeddingInvitation() {
     let startX = 0;
     let startY = 0;
     let startTime = 0;
+    let isIgnored = false;
+
+    const isInsideGallery = (target: EventTarget | null) => {
+      const el = target as HTMLElement | null;
+      if (!el) return false;
+      return !!el.closest('[data-prevent-swipe], [role="region"], [data-slide], .carousel-track');
+    };
+
     const handleTouchStart = (e: TouchEvent) => {
+      if (currentCard === 2 || isInsideGallery(e.target)) {
+        isIgnored = true;
+        return;
+      }
+      isIgnored = false;
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
       startTime = Date.now();
     };
+
     const handleTouchEnd = (e: TouchEvent) => {
+      if (isIgnored || currentCard === 2 || isInsideGallery(e.target)) return;
       const dx = e.changedTouches[0].clientX - startX;
       const dy = e.changedTouches[0].clientY - startY;
       const dt = Date.now() - startTime;
@@ -156,16 +200,17 @@ export default function WeddingInvitation() {
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [started, goNext, goPrev]);
+  }, [started, currentCard, goNext, goPrev]);
 
   /* All cards created once — never unmounted */
   const cards = useMemo(
     () => [
       <IntroCard key="intro" onBegin={handleBegin} />,
       <WeddingCard key="wedding" />,
+      <MomentsCard key="moments" onNext={goNext} />,
       <ThankYouCard key="thankyou" />,
     ],
-    [handleBegin]
+    [handleBegin, goNext]
   );
 
   return (

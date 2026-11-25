@@ -20,7 +20,8 @@ interface IntroCardProps {
 }
 
 const tiles = [
-  { label: "Wedding", event: EVENTS.wedding, detail: "Sehra 4 PM", to: 1 },
+  { label: "Wedding", date: EVENTS.wedding.shortDate.replace(" 2026", ""), detail: "Sehra 4 PM", to: 1 },
+  { label: "Moments", date: "Our Story", detail: "Couple Photos", to: 2 },
 ] as const;
 
 export default function IntroCard({ onBegin }: IntroCardProps) {
@@ -122,14 +123,14 @@ export default function IntroCard({ onBegin }: IntroCardProps) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 2.2 }}
-          className="grid grid-cols-1 w-full max-w-[14rem] mx-auto mb-4"
+          className="grid grid-cols-2 gap-2.5 w-full max-w-xs mx-auto mb-4"
         >
           {tiles.map((t) => (
             <button key={t.label} type="button" onClick={() => onBegin(t.to)} className="event-tile">
               <span className="event-tile-label">{t.label}</span>
-              <span className="event-tile-date">{t.event.shortDate.replace(" 2026", "")}</span>
+              <span className="event-tile-date">{t.date}</span>
               <span className="event-tile-time">{t.detail}</span>
-              <span className="event-tile-cta">View details &rarr;</span>
+              <span className="event-tile-cta">View &rarr;</span>
             </button>
           ))}
         </motion.div>

@@ -749,3 +749,24 @@ body {
 
 /* keep content clear of the fixed controls */
 .card-container > .z-30 { padding-bottom: 7.5rem; }
+
+/* ============================================
+   CAROUSEL SNAP HIGHLIGHTS (Modern Web Guidance)
+   ============================================ */
+@supports (container-type: scroll-state) {
+  @media (prefers-reduced-motion: no-preference) {
+    @container scroll-state(snapped: x) {
+      [data-slide] > div {
+        box-shadow: 0 16px 36px rgba(212, 175, 55, 0.45);
+        border-color: #d4af37;
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-slide] {
+    transition: none !important;
+    transform: none !important;
+  }
+}

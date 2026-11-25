@@ -575,7 +575,8 @@ export function FloralCorner({ className = "", color = "#d4af37" }: { className?
 /* Deterministic pseudo-random from index (avoids hydration mismatch) */
 function seeded(i: number, offset = 0): number {
   const x = Math.sin((i + 1) * 9301 + offset * 4967) * 49297;
-  return x - Math.floor(x);
+  const val = x - Math.floor(x);
+  return Math.round(val * 1000) / 1000;
 }
 
 /* =============================================
